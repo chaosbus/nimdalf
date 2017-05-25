@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST">
+        <div>
+            <h1>Hello, {% if name %}{{ name }}{% else %}_NOBODY_{% endif %}!</h1>
+        </div>
+        <p>-------</p>
+        <div class="alert alert-warning">
+            {% for message in get_flashed_messages() %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        <p>-------</p>
+        (1) {{ form.hidden_tag() }}<br>
+        (2) {{ form.name.label }}<br>
+        (3) {{ form.name(id='my-text-field') }}<br>
+        (4) {{ form.pwds() }}<br>
+        (5) {{ form.onoff() }}<br>
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

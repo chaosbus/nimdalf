@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
 from api import bp_api
 from admin import bp_admin
 
 bootstrap = Bootstrap()
+db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
