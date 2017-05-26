@@ -13,7 +13,7 @@ from app import create_app
 
 
 if __name__ == '__main__':
-    app = create_app()
+    app = create_app('default')
 
     app.config['SECRET_KEY'] = 'asdfa12341234'
 
@@ -27,6 +27,7 @@ if __name__ == '__main__':
         print url_for('api.index', _external=True)
         ss = '''<li><a href="{{ url_for('api.index') }}">API.</a></li>
         <li><a href="{{ url_for('admin.index') }}">Admin.</a></li>'''
-        return render_template_string(ss)
+        # return render_template_string(ss)
+        return render_template('base.html', title='Tom && Jerry')
 
     app.run(port=30000)

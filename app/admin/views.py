@@ -1,31 +1,20 @@
-# -*- coding: utf-8 *-*
 from flask import session
-from flask import render_template
-from flask import redirect
 from flask import request
+from flask import render_template, render_template_string
+from flask import redirect
 from flask import url_for
 from flask import flash
-from flask.ext.wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, DateField, BooleanField
-from wtforms.validators import DataRequired, Required
 from . import bp_admin
+from .forms import MyForm1, RegistrationForm, LoginForm
 
 
 @bp_admin.route('/')
 def index():
-    print '__name__', __name__
-    return render_template('admin.html')
+    print __name__
+    return render_template('admin/admin.html')
 
 
-class MyForm1(FlaskForm):
-    name = StringField('Names?', validators=[DataRequired('you dont have name?')])
-    pwds = PasswordField('Password')
-    today = DateField('TimeNow')
-    onoff = BooleanField('Choose')
-    submit = SubmitField('Enter')
-
-
-@bp_admin.route('/form1', methods=['GET', 'POST'])
+@bp_admin.route('/testform', methods=['GET', 'POST'])
 def myform():
     print __name__
     # name = None
@@ -60,4 +49,38 @@ def myform():
         print 'E1', form.name.errors
         # print 'E2', form.pwds.errors
 
-    return render_template('form.html', form=form, name=session.get('name'), pwds=session.get('pwds'), onoff=session.get('onoff'))
+    return render_template('admin/form.html', form=form, name=session.get('name'), pwds=session.get('pwds'), onoff=session.get('onoff'))
+
+
+@bp_admin.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        print 'got:', form.username.data, form.email.data, form.password.data, form.confirm.data
+
+        flash('Thanks for registering')
+
+        return redirect(url_for('main.index'))
+    print 'render_template'
+    # flash('render_template')
+    return render_template('admin/register.html', form=form)
+
+
+@bp_admin.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        print 'got:', form.username.dataform.password.data, form.remember.data
+
+        flash('Thanks for login')
+
+        return redirect(url_for('main.index'))
+    print 'render_template'
+    # flash('render_template')
+
+    return render_template('admin/login.html', form=form)
+
+
+

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{#{% from "admin/_login_form_helpers.html" import render_field, form_field %}#}
+
+{% block title %}SoloDispaly - Register{% endblock %}
+
+{% block navbar %}
+{#    <nav class="navbar navbar-inverse">导航</nav>#}
+{% endblock %}
+
+{#{% block content %}#}
+{#    <form method=post action="/admin/register">#}
+{#        <dl>#}
+{#          {{ render_field(form.username) }}#}
+{#          {{ render_field(form.email) }}#}
+{#          {{ render_field(form.password) }}#}
+{#          {{ render_field(form.confirm) }}#}
+{#          {{ render_field(form.accept_tos) }}#}
+{#        </dl>#}
+{#        <p><input type="submit" value="Register"></p>#}
+{#    </form>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <div class="container">
+     <div class="row"></div>
+         <div class="row">
+        {# <#-- col-md-4表示合并4列，col-md-offset-4表示偏移4列 sm意思相同 --#>#}
+             <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                 <div class="page-header">
+                    <h1>Register</h1>
+                 </div>
+
+                 {% for message in get_flashed_messages() %}
+                     <div class="alert alert-warning">
+                        <h6>{{ message }}</h6>
+                         <button type="button" class="close" data-dismiss="alter">×</button>
+                         {{ message }}
+                     </div>
+                 {% endfor %}
+
+                 <div class="col-md-4">
+                     {{ wtf.quick_form(form) }}
+                 </div>
+
+             </div>
+         </div>
+    </div>
+{% endblock %}

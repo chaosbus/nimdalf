@@ -1,9 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for, flash
-from . import bp_api
+from . import bp_main
 
 
-@bp_api.route('/order')
+@bp_main.route('/')
 def index():
     print '__name__', __name__
-    return render_template('api/index.html', subtitle='API.:|')
-
+    return render_template('main/index.html')
