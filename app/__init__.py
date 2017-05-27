@@ -1,16 +1,14 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 from config import config
-
-# blueprint
-from main import bp_main
-from api import bp_api
-from admin import bp_admin
-
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
 
 
 def create_app(config_name):
@@ -19,9 +17,17 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     bootstrap.init_app(app)
+    db.init_app(app)
+    login_manager.init_app(app)
 
+    from main import bp_main
     app.register_blueprint(bp_main, url_prefix='/')
+
+    from api import bp_api
     app.register_blueprint(bp_api, url_prefix='/api')
-    app.register_blueprint(bp_admin, url_prefix='/admin')
+
+    from auth import bp_auth
+    app.register_blueprint(bp_auth, url_prefix='/auth')
 
     return app
+

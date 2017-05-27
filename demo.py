@@ -26,7 +26,7 @@ if __name__ == '__main__':
         print 'hahah'
         print url_for('api.index', _external=True)
         ss = '''<li><a href="{{ url_for('api.index') }}">API.</a></li>
-        <li><a href="{{ url_for('admin.index') }}">Admin.</a></li>'''
+        <li><a href="{{ url_for('auth.index') }}">Admin.</a></li>'''
         # return render_template_string(ss)
         return render_template('base.html', title='Tom && Jerry')
 
