@@ -50,10 +50,12 @@
 {#                这里和书上不一样，书上为is_authenticated()。实际不应该有()#}
                 {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                    <button type="button" class="btn btn-default navbar-btn">Sign out</button>
+                    <button type="button" class="btn btn-primary navbar-btn">Sign out</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalLogout">Logout</button>
                 {% else %}
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+                    <button type="button" class="btn btn-primary navbar-btn">Sign in</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalLogin">Login</button>
                 {% endif %}
             </ul>
         </div>
