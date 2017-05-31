@@ -62,3 +62,21 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+class SubsOperation(db.Model):
+    __name__ == 'subsoperation'
+
+    id = db.Column(db.Integer, primary_key=True)
+    product_code = db.Column(db.String(21))
+    user_msisdn = db.Column(db.String(48))
+    pay_user = db.Column(db.String(48))
+    operation = db.Column(db.String(2))
+    status = db.Column(db.String(2))
+    operation_mode = db.Column(db.Integer)
+    operation_date = db.Column(db.DateTime)
+    effictive_date = db.Column(db.DateTime)
+    device_type = db.Column(db.Integer)
+    device_id = db.Column(db.String(6))
+
+    def __repr__(self):
+        return '<SubsOperation %r>' % self.id
+

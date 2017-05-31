@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}SoloDisplay - {{subtitle}}{% endblock %}
+
+{% block page_content %}
+<div>
+    <table class="table table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>MSISDN</th>
+            <th>PRODUCT</th>
+            <th>OPERATION DATE</th>
+            <th>EFFECTIVE DATE</th>
+            <th>OPERATION</th>
+            <th>DEVICE TYPE</th>
+            <th>DEVICE ID</th>
+        </tr>
+        {% for tb in table %}
+        <tr>
+            <td>{{ tb.id }}</td>
+            <td>{{ tb.user_msisdn }}</td>
+            <td>{{ tb.product_code }}</td>
+            <td>{{ tb.operation_date }}</td>
+            <td>{{ tb.effictive_date }}</td>
+            <td>{{ tb.operation }}</td>
+            <td>{{ tb.device_type }}</td>
+            <td>{{ tb.device_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}}
+
+
